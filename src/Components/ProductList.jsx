@@ -1,37 +1,46 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Store/cartSlice";
+import products from '../Product_Api/Product'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 
 function ProductList() {
-  const products = [
-    { id: 1, name: "Product 1", price: 10 },
-    { id: 2, name: "Product 2", price: 15 },
-    // Add more products here
-  ];
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+    };
 
-  return (
-    <>
-      <div>
-        <h2>Product List</h2>
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              {product.name} - ${product.price}
-              <button onClick={() => handleAddToCart(product)}>
-                Add to Cart
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="container">
+                <div className="row">
+                    {products.map((product) => {
+                        return (
+                            <>
+                                <div className="col-4 my-3" key={product.id}>
+                                    <Card>
+                                        <Card.Img variant="top" src={product.img} />
+                                        <Card.Body>
+                                            <Card.Title>{product.title}</Card.Title>
+                                            <Card.Title>{product.price}</Card.Title>
+                                            <Card.Text>
+                                                {product.description}
+                                            </Card.Text>
+                                            <Button variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            </>
+                        )
+                    })}
+                </div>
+            </div>
+        </>
+    );
 }
 
 export default ProductList;

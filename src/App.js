@@ -1,14 +1,12 @@
-// App.js
-import React from 'react';
-import ProductList from './Components/ProductList.jsx';
-import Cart from './Components/Cart.jsx';
+import React from "react";
+import "./Assets/App.css";
+import AppRouting from "./Router/AppRouting";
 
 function App() {
   return (
-    <div className="App">
-      <ProductList />
-      <Cart />
-    </div>
+    <>
+      <AppRouting />
+    </>
   );
 }
 
